@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer utilities {
+  /* THE FLUID MESH BACKGROUND (From Video)
+     Dark Teal, Deep Purple, Crimson Red, Navy Blue 
+     Yeh bilkul liquid ki tarah aapas mein merge honge. */
+  .fluid-mesh-bg {
+    background: linear-gradient(
+      -45deg, 
+      #0f172a, /* Navy Dark */
+      #310e3a, /* Deep Purple */
+      #4a0404, /* Dark Red */
+      #062b35  /* Deep Teal */
+    );
+    background-size: 400% 400%;
+    animation: FluidMerge 15s ease infinite;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* The Elite Golden Button */
+  .elite-golden-button {
+    background: linear-gradient(145deg, #f5d365, #b48a02);
+    box-shadow: 
+      0 4px 15px rgba(180, 138, 2, 0.4),
+      inset 0 -2px 5px rgba(0,0,0,0.2),
+      inset 0 2px 5px rgba(255,255,255,0.4);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 223, 0, 0.5);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .elite-golden-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+      0 8px 25px rgba(180, 138, 2, 0.6),
+      inset 0 -2px 5px rgba(0,0,0,0.3),
+      inset 0 2px 5px rgba(255,255,255,0.5);
+    background: linear-gradient(145deg, #ffdf85, #d4a002);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Fluid Animation Keyframes */
+@keyframes FluidMerge {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+html {
+  scroll-behavior: smooth;
 }
